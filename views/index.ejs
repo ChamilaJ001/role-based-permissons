@@ -6,13 +6,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Role based permissions</title>
     <link rel="stylesheet" href="http://localhost:5000/styles/output.css" />
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
   </head>
   <body>
-    <main class="py-12 px-40">
+    <section class="py-12 px-40">
       <h1 class="text-2xl font-bold">Role Permissons</h1>
       <!-- Accordian -->
-      <div class="mt-5"><%- include("./partials/accordian") %></div>
-    </main>
+      <div class="mt-5">
+        <div id="accordion-collapse" data-accordion="collapse">
+          <!-- System Module -->
+          <div class="px-5 py-4 bg-gray-100">
+            <h2 class="font-semibold text-lg rounded-t-md">System Module</h2>
+          </div>
+          <!-- 1 -->
+          <%-include('./partials/accordian', { title: "Manage Users", id: "1",
+          actions: [ { create: "create" }, { read: "read" }, { update: "update"
+          }, { deletes: "delete" } ], roles: [{ tAdmin: "Tenant Admin"},
+          {sAdmin: "System Admin" }] })-%>
+
+          <!-- 2 -->
+          <%-include('./partials/accordian', { title: "Manage Settings", id:
+          "2", actions: [ { update: "update" } ], roles: [{ tAdmin:
+          "TenantAdmin"}, {sAdmin: "System Admin" }] })-%>
+
+          <!-- Assest Module -->
+          <div class="px-5 py-4 bg-gray-100 mt-5">
+            <h2 class="font-semibold text-lg rounded-t-md">Asset Module</h2>
+          </div>
+          <!-- 1 -->
+          <%-include('./partials/accordian', { title: "Manage Assets", id: "3",
+          actions: [ { create: "create" }, { read: "read" }, { update: "update"
+          }, { deletes: "delete" } ], roles: [{ tAdmin: "Tenant Admin"},
+          {sAdmin: "System Admin" }, {asstManager: "Asset Manager"
+          },{asstSupervisor: "Asset Supervisor" }] })-%>
+
+          <!-- 2 -->
+          <%-include('./partials/accordian', { title: "Manage Settings", id:
+          "4", actions: [ { read: "read" }, { update: "update" } ], roles: [{
+          tAdmin: "Tenant Admin"}, {sAdmin: "System Admin" }, {asstManager:
+          "AssetManager" },{asstSupervisor: "Asset Supervisor" }] })-%>
+
+          <!-- 3 -->
+          <%-include('./partials/accordian', { title: "Lend Assets", id: "5",
+          actions: [ { create: "create" } ], roles: [{ tAdmin: "Tenant Admin"},
+          {sAdmin: "System Admin" }, {asstManager: "AssetManager"
+          },{asstSupervisor: "Asset Supervisor" }] })-%>
+
+          <!-- 4 -->
+          <%-include('./partials/accordian', { title: "Decommission Assets", id:
+          "6", actions: [ { create: "create" } ], roles: [{ tAdmin:
+          "TenantAdmin"}, {sAdmin: "System Admin" }, {asstManager:
+          "AssetManager" },{asstSupervisor: "Asset Supervisor" }] })-%>
+        </div>
+      </div>
+    </section>
 
     <!-- Flowbite Js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
