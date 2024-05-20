@@ -1,0 +1,26 @@
+{
+  "name": "role-based-permission",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "concurrently \"nodemon src/index.js\" ",
+    "style": "npx tailwindcss -i ./public/styles/input.css -o ./public/styles/output.css --watch"
+  },
+  "author": "Chamila",
+  "license": "ISC",
+  "dependencies": {
+    "autoprefixer": "^10.4.19",
+    "body-parser": "^1.20.2",
+    "concurrently": "^8.2.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "flowbite": "^2.3.0",
+    "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3"
+  }
+}
