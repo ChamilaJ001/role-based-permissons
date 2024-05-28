@@ -1,0 +1,46 @@
+<div id="accordion-collapse" data-accordion="collapse">
+  <!-- System Module -->
+  <div class="px-5 py-4 bg-gray-100 rounded-t-md">
+    <h2 class="font-semibold text-lg ">System Module</h2>
+  </div>
+  <!-- 1 -->
+  <%-include('./accordian', { title: "Manage Users", id: "1",
+  actions: [ { create: "create" }, { read: "read" }, { update: "update"
+  }, { deletes: "delete" } ], tests:{Admin:["Tenant Admin",
+  "System Admin"], type:"Manage Users", moduleType:"System Module"} })-%>
+
+  <!-- 2 -->
+  <%-include('./accordian', { title: "Manage Settings", id:
+  "2", actions: [ { update: "update" } ], tests:{Admin:["Tenant Admin",
+  "System Admin"], type:"Manage Settings", moduleType:"System Module"}
+  })-%>
+
+  <!-- Assest Module -->
+  <div class="px-5 py-4 bg-gray-100 mt-5 rounded-t-md">
+    <h2 class="font-semibold text-lg ">Asset Module</h2>
+  </div>
+  <!-- 1 -->
+  <%-include('./accordian', { title: "Manage Assets", id: "3",
+  actions: [ { create: "create" }, { read: "read" }, { update: "update"
+  }, { deletes: "delete" } ], tests:{Admin:["Tenant Admin", "System Admin", "Asset Manager","Asset Supervisor"], type:"Manage Assets",
+  moduleType:"Asset Module" }})-%>
+
+  <!-- 2 -->
+  <%-include('./accordian', { title: "Manage Settings", id:
+  "4", actions: [ { read: "read" }, { update: "update" } ],
+  tests:{Admin:["Tenant Admin", "System Admin",
+  "Asset Manager","Asset Supervisor"], type:"Manage Settings",
+  moduleType:"AssetModule" }})-%>
+
+  <!-- 3 -->
+  <%-include('./accordian', { title: "Lend Assets", id: "5",
+  actions: [ { create: "create" } ], tests:{Admin:["Tenant Admin",
+  "System Admin", "Asset Manager","Asset Supervisor"],
+  type:"LendAssets", moduleType:"Asset Module" }})-%>
+
+  <!-- 4 -->
+  <%-include('./accordian', { title: "Decommission Assets", id:
+  "6", actions: [ { create: "create" } ], tests:{Admin:["Tenant Admin",
+  "System Admin", "Asset Manager","Asset Supervisor"],
+  type:"Decommission Assets", moduleType:"Asset Module"} } )-%>
+</div>

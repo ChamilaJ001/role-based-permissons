@@ -7,16 +7,12 @@ config();
 const app = express();
 
 app.use(bodyParser.json());
+
 app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 // routes
 app.use(router);
-
-app.post("/submit", (req, res) => {
-  console.log("Received JSON:", req.body);
-  res.json({ status: "success", data: req.body });
-});
 
 const PORT = process.env.PORT || 5000;
 

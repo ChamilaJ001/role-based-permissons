@@ -20,48 +20,50 @@
           <% } %>
           
           <% }); %>
+          <% for(var i=0; i<tests.length; i++) { %>
+            <% var adminArray = tests[i].Admin; %>
+            <% for(var j=0; j<adminArray.length; j++) { %>
+              <p><%= adminArray %></p>
+            <% } %>
+          <% } %>
       </tr>
     </thead>
     <tbody>
+     
       <form
-        id="adminForm"
-        hx-post="/submit"
-        hx-headers='{"Content-Type": "application/json"}'
-        hx-trigger="submit"
-        hx-ext="json-enc"
+      id="rolesForm"
+      hx-post="/save-roles"
+      hx-trigger="submit"
+      hx-headers='{"Content-Type": "application/json"}'
+      hx-ext="json-enc"
       >
-        <% for(var i=0; i<roles.length; i++) {%>
-        <tr class="bg-white border-b light:bg text-black border-gray-300"></tr>
+        <input type="hidden" name="Module" value="<%= tests.moduleType %>">
+        <input type="hidden" name="Section" value="<%= tests.type %>">
+        
+        <% for(var i=0; i<tests.Admin.length; i++) {%>
+        <tr class="bg-white border-b light:bg text-black border-gray-300">
           <th scope="row" class="px-6 py-4 font-medium text-black">
-            <% if (roles[i].tAdmin) { %>
-              <p><%= roles[i].tAdmin %></p>
+            <% if (tests.Admin[i]) { %>
+              <p><%= tests.Admin[i] %></p>
             <% } %>
-            <% if (roles[i].sAdmin) { %>
-              <p><%= roles[i].sAdmin %></p>
-            <% } %>
-            <% if (roles[i].asstManager) { %>
-              <p><%= roles[i].asstManager %></p>
-            <% } %>
-            <% if (roles[i].asstSupervisor) { %>
-              <p><%= roles[i].asstSupervisor %></p>
-            <% } %>
+            
           </th>
           <% actions.forEach(action => { %> <% if (action.create) {
             %>
             <td class="px-8 py-4">
-              <input type="checkbox" name="tenantAdmin[]" value="option1" />
+              <input type="checkbox" name="<%= tests.Admin[i] %>" value="<%= action.create %>" checked/>
             </td>
             <% } %> <% if (action.read) { %>
             <td class="px-8 py-4">
-              <input type="checkbox" name="tenantAdmin[]" value="option2" />
+              <input type="checkbox" name="<%= tests.Admin[i] %>" value="<%= action.read %>" checked/>
             </td>
             <% } %> <% if (action.update) { %>
             <td class="px-8 py-4">
-              <input type="checkbox" name="tenantAdmin[]" value="option3" />
+              <input type="checkbox" name="<%= tests.Admin[i] %>" value="<%= action.update %>" checked/>
             </td>
             <% } %> <% if (action.deletes) { %>
             <td class="px-8 py-4">
-              <input type="checkbox" name="tenantAdmin[]" value="option4" />
+              <input type="checkbox" name="<%= tests.Admin[i] %>" value="<%= action.deletes %>" checked/>
             </td>
             <% } %> <% }); %>
         </tr>
@@ -81,7 +83,9 @@
             </button>
           </td>
         </tr>
+        
       </form>
     </tbody>
   </table>
+
 </div>
